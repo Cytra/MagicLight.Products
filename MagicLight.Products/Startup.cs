@@ -30,11 +30,15 @@ namespace MagicLight.Products
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(opt =>
-                opt.UseInMemoryDatabase("TodoList"));
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddDbContext<ApplicationDbContext>(opt =>
+                opt.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+
+            services.BuildServiceProvider()
+                .GetService<ApplicationDbContext>().Database.Migrate();
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
