@@ -9,7 +9,7 @@ namespace MagicLight.Products.Model
     {
         public int Id { get; set; }
         public string Category { get; set; }
-        public string SubCategoryName { get; set; }
+        public string SubCategory { get; set; }
         public string SubSubCategoryName { get; set; }
         public string Url { get; set; }
         public string ProductImageLink { get; set; }
